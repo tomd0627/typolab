@@ -13,9 +13,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      rel="preload"
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,400..700;1,400..700&display=swap"
-      rel="stylesheet"
+      as="style"
+      onload="
+        this.onload = null;
+        this.rel = 'stylesheet';
+      "
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,400..700;1,400..700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
     <link rel="stylesheet" href="css/style.css" />
     <script>
       (() => {
@@ -147,71 +158,68 @@
       <section class="presets-section" aria-label="Curated font presets">
         <div class="presets-inner">
           <span class="presets-label" aria-hidden="true">Start with</span>
-          <div class="presets-list" role="list">
-            <button
-              type="button"
-              class="preset-chip"
-              data-font="Fraunces"
-              role="listitem"
-              aria-pressed="true"
-            >
-              Fraunces
-            </button>
-            <button
-              type="button"
-              class="preset-chip"
-              data-font="Roboto Flex"
-              role="listitem"
-              aria-pressed="false"
-            >
-              Roboto Flex
-            </button>
-            <button
-              type="button"
-              class="preset-chip"
-              data-font="Recursive"
-              role="listitem"
-              aria-pressed="false"
-            >
-              Recursive
-            </button>
-            <button
-              type="button"
-              class="preset-chip"
-              data-font="Bricolage Grotesque"
-              role="listitem"
-              aria-pressed="false"
-            >
-              Bricolage Grotesque
-            </button>
-            <button
-              type="button"
-              class="preset-chip"
-              data-font="Playfair Display"
-              role="listitem"
-              aria-pressed="false"
-            >
-              Playfair Display
-            </button>
-            <button
-              type="button"
-              class="preset-chip"
-              data-font="EB Garamond"
-              role="listitem"
-              aria-pressed="false"
-            >
-              EB Garamond
-            </button>
-            <button
-              type="button"
-              class="preset-chip"
-              data-font="Source Code Pro"
-              role="listitem"
-              aria-pressed="false"
-            >
-              Source Code Pro
-            </button>
-          </div>
+          <ul class="presets-list">
+            <li>
+              <button type="button" class="preset-chip" data-font="Fraunces" aria-pressed="true">
+                Fraunces
+              </button>
+            </li>
+            <li>
+              <button
+                type="button"
+                class="preset-chip"
+                data-font="Roboto Flex"
+                aria-pressed="false"
+              >
+                Roboto Flex
+              </button>
+            </li>
+            <li>
+              <button type="button" class="preset-chip" data-font="Recursive" aria-pressed="false">
+                Recursive
+              </button>
+            </li>
+            <li>
+              <button
+                type="button"
+                class="preset-chip"
+                data-font="Bricolage Grotesque"
+                aria-pressed="false"
+              >
+                Bricolage Grotesque
+              </button>
+            </li>
+            <li>
+              <button
+                type="button"
+                class="preset-chip"
+                data-font="Playfair Display"
+                aria-pressed="false"
+              >
+                Playfair Display
+              </button>
+            </li>
+            <li>
+              <button
+                type="button"
+                class="preset-chip"
+                data-font="EB Garamond"
+                aria-pressed="false"
+              >
+                EB Garamond
+              </button>
+            </li>
+            <li>
+              <button
+                type="button"
+                class="preset-chip"
+                data-font="Source Code Pro"
+                aria-pressed="false"
+              >
+                Source Code Pro
+              </button>
+            </li>
+          </ul>
         </div>
       </section>
 
@@ -411,10 +419,7 @@
                 <span class="copy-label">Copy</span>
               </button>
             </div>
-            <pre
-              class="snippet-block"
-              aria-label="Generated CSS snippet"
-            ><code id="snippet-code"></code></pre>
+            <pre class="snippet-block"><code id="snippet-code"></code></pre>
           </section>
         </aside>
       </div>
