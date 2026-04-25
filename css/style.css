@@ -1,0 +1,29 @@
+@layer reset, base, layout, components;
+
+@import url("reset.css") layer(reset);
+@import url("tokens.css");
+@import url("layout.css") layer(layout);
+@import url("components.css") layer(components);
+
+@layer base {
+  html {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    color-scheme: light;
+    font-family: var(--font-ui);
+    font-size: var(--text-base);
+    line-height: 1.5;
+    scroll-behavior: smooth;
+  }
+
+  [data-theme="dark"] {
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    transition:
+      background-color var(--transition-base),
+      color var(--transition-base);
+  }
+}

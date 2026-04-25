@@ -1,0 +1,102 @@
+:root {
+  /* Colors — light theme (default) */
+  --color-bg: #f5f1eb;
+  --color-surface: #fff;
+  --color-surface-alt: #ece8e1;
+  --color-border: #d4cec6;
+  --color-text: #1c1917;
+  --color-text-2: #57534e;
+  --color-text-3: #a8a29e;
+  --color-accent: #4338ca;
+  --color-accent-hover: #3730a3;
+  --color-accent-subtle: #eef2ff;
+  --color-code-bg: #f0ecff;
+  --color-focus: #4338ca;
+  --color-error: #b91c1c;
+  --color-error-bg: #fef2f2;
+  --color-success: #15803d;
+  --color-success-bg: #f0fdf4;
+
+  /* Typography */
+  --font-ui: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Menlo", "Consolas", monospace;
+
+  /* Type scale */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+
+  /* Font weights */
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+
+  /* Spacing (4pt base grid) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* Border radii */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 100ms ease;
+  --transition-base: 200ms ease;
+  --transition-slow: 300ms ease;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgb(28 25 23 / 6%);
+  --shadow-md: 0 4px 12px rgb(28 25 23 / 8%);
+  --shadow-lg: 0 8px 24px rgb(28 25 23 / 12%);
+
+  /* Layout */
+  --header-height: 60px;
+  --presets-height: 52px;
+  --controls-width: 380px;
+
+  /* Sliders */
+  --slider-track-size: 4px;
+}
+
+[data-theme="dark"] {
+  --color-bg: #131016;
+  --color-surface: #1e1a24;
+  --color-surface-alt: #171420;
+  --color-border: #2e2840;
+  --color-text: #f0ecff;
+  --color-text-2: #a09bb8;
+  --color-text-3: #6b6285;
+  --color-accent: #818cf8;
+  --color-accent-hover: #a5b4fc;
+  --color-accent-subtle: #1e1a38;
+  --color-code-bg: #120f1e;
+  --color-focus: #818cf8;
+  --color-error: #fca5a5;
+  --color-error-bg: #1f0a0a;
+  --color-success: #86efac;
+  --color-success-bg: #052010;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 30%);
+  --shadow-md: 0 4px 12px rgb(0 0 0 / 40%);
+  --shadow-lg: 0 8px 24px rgb(0 0 0 / 50%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast: 0ms;
+    --transition-base: 0ms;
+    --transition-slow: 0ms;
+  }
+}

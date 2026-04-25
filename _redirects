@@ -1,0 +1,3 @@
+# Single-page tool — no client-side routing needed.
+# Return 404 for any path that isn't a real file.
+/*    /index.html    404

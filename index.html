@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TypoLab — Variable Font Explorer</title>
+    <meta
+      name="description"
+      content="An interactive type specimen explorer. Load any Google Font, manipulate variable font axes in real time, and export production-ready CSS."
+    />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,400..700;1,400..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script>
+      (function () {
+        const saved = localStorage.getItem("typolab-theme");
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (saved === "dark" || (!saved && prefersDark)) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to main content</a>
+
+    <!-- ─── Header ─────────────────────────────────────────────────────────── -->
+    <header class="site-header" role="banner">
+      <div class="header-inner">
+        <a href="/" class="site-logo" aria-label="TypoLab home">
+          <span class="logo-mark" aria-hidden="true">Tℓ</span>
+          <span class="logo-name">TypoLab</span>
+        </a>
+
+        <div class="search-wrapper" role="search">
+          <label for="font-search" class="visually-hidden">Search Google Fonts by name</label>
+          <div class="search-input-wrapper">
+            <svg
+              class="search-icon"
+              aria-hidden="true"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.35-4.35" />
+            </svg>
+            <input
+              type="search"
+              id="font-search"
+              class="search-input"
+              placeholder="Search Google Fonts…"
+              autocomplete="off"
+              spellcheck="false"
+              aria-autocomplete="list"
+              aria-controls="search-results"
+              aria-expanded="false"
+              aria-haspopup="listbox"
+            />
+            <button type="button" class="search-clear" aria-label="Clear search" hidden>
+              <svg
+                aria-hidden="true"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
+            </button>
+          </div>
+          <ul
+            id="search-results"
+            class="search-results"
+            role="listbox"
+            aria-label="Font suggestions"
+            hidden
+          ></ul>
+          <p class="search-error" id="search-error" role="alert" aria-live="polite" hidden></p>
+        </div>
+
+        <button
+          type="button"
+          class="theme-toggle"
+          id="theme-toggle"
+          aria-label="Switch to dark mode"
+        >
+          <svg
+            class="icon-sun"
+            aria-hidden="true"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2" />
+            <path d="M12 20v2" />
+            <path d="m4.93 4.93 1.41 1.41" />
+            <path d="m17.66 17.66 1.41 1.41" />
+            <path d="M2 12h2" />
+            <path d="M20 12h2" />
+            <path d="m6.34 17.66-1.41 1.41" />
+            <path d="m19.07 4.93-1.41 1.41" />
+          </svg>
+          <svg
+            class="icon-moon"
+            aria-hidden="true"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- ─── Main ────────────────────────────────────────────────────────────── -->
+    <main id="main" class="main-layout">
+      <!-- Presets strip -->
+      <section class="presets-section" aria-label="Curated font presets">
+        <div class="presets-inner">
+          <span class="presets-label" aria-hidden="true">Start with</span>
+          <div class="presets-list" role="list">
+            <button
+              type="button"
+              class="preset-chip"
+              data-font="Fraunces"
+              role="listitem"
+              aria-pressed="true"
+            >
+              Fraunces
+            </button>
+            <button
+              type="button"
+              class="preset-chip"
+              data-font="Roboto Flex"
+              role="listitem"
+              aria-pressed="false"
+            >
+              Roboto Flex
+            </button>
+            <button
+              type="button"
+              class="preset-chip"
+              data-font="Recursive"
+              role="listitem"
+              aria-pressed="false"
+            >
+              Recursive
+            </button>
+            <button
+              type="button"
+              class="preset-chip"
+              data-font="Bricolage Grotesque"
+              role="listitem"
+              aria-pressed="false"
+            >
+              Bricolage Grotesque
+            </button>
+            <button
+              type="button"
+              class="preset-chip"
+              data-font="Playfair Display"
+              role="listitem"
+              aria-pressed="false"
+            >
+              Playfair Display
+            </button>
+            <button
+              type="button"
+              class="preset-chip"
+              data-font="EB Garamond"
+              role="listitem"
+              aria-pressed="false"
+            >
+              EB Garamond
+            </button>
+            <button
+              type="button"
+              class="preset-chip"
+              data-font="Source Code Pro"
+              role="listitem"
+              aria-pressed="false"
+            >
+              Source Code Pro
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Workspace -->
+      <div class="workspace">
+        <!-- ─── Specimen Panel ──────────────────────────────────────────────── -->
+        <section class="specimen-panel" aria-label="Font specimen">
+          <div class="panel-header">
+            <h1 class="panel-title">
+              <svg
+                aria-hidden="true"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="4 7 4 4 20 4 20 7" />
+                <line x1="9" x2="15" y1="20" y2="20" />
+                <line x1="12" x2="12" y1="4" y2="20" />
+              </svg>
+              <span id="specimen-font-name">Fraunces</span>
+            </h1>
+
+            <div class="specimen-controls">
+              <label for="specimen-size" class="control-label">
+                Size
+                <span class="control-value" id="specimen-size-value">64</span
+                ><span class="control-unit">px</span>
+              </label>
+              <input
+                type="range"
+                id="specimen-size"
+                class="size-slider"
+                min="12"
+                max="200"
+                value="64"
+                aria-label="Font size in pixels"
+              />
+
+              <label for="specimen-leading" class="control-label">
+                Leading
+                <span class="control-value" id="specimen-leading-value">1.2</span>
+              </label>
+              <input
+                type="range"
+                id="specimen-leading"
+                class="size-slider"
+                min="0.8"
+                max="2.5"
+                step="0.05"
+                value="1.2"
+                aria-label="Line height"
+              />
+            </div>
+          </div>
+
+          <div
+            id="specimen-text"
+            class="specimen-text"
+            contenteditable="plaintext-only"
+            role="textbox"
+            aria-multiline="true"
+            aria-label="Specimen text — click to edit"
+            spellcheck="false"
+          >
+            Typography is the craft of enduring.
+          </div>
+
+          <div class="specimen-loading" id="specimen-loading" aria-live="polite" hidden>
+            <span class="loading-spinner" aria-hidden="true"></span>
+            Loading font…
+          </div>
+
+          <div class="specimen-error" id="specimen-error" role="alert" hidden>
+            <svg
+              aria-hidden="true"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" x2="12" y1="8" y2="12" />
+              <line x1="12" x2="12.01" y1="16" y2="16" />
+            </svg>
+            <span id="error-message-text"></span>
+          </div>
+        </section>
+
+        <!-- ─── Controls Panel ─────────────────────────────────────────────── -->
+        <aside class="controls-panel" aria-label="Font controls">
+          <!-- Axes -->
+          <section class="axes-section" aria-labelledby="axes-heading">
+            <div class="section-header">
+              <h2 class="section-title" id="axes-heading">
+                <svg
+                  aria-hidden="true"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <line x1="21" x2="14" y1="4" y2="4" />
+                  <line x1="10" x2="3" y1="4" y2="4" />
+                  <line x1="21" x2="12" y1="12" y2="12" />
+                  <line x1="8" x2="3" y1="12" y2="12" />
+                  <line x1="21" x2="16" y1="20" y2="20" />
+                  <line x1="12" x2="3" y1="20" y2="20" />
+                  <line x1="14" x2="14" y1="2" y2="6" />
+                  <line x1="8" x2="8" y1="10" y2="14" />
+                  <line x1="16" x2="16" y1="18" y2="22" />
+                </svg>
+                Axes
+              </h2>
+              <button
+                type="button"
+                class="reset-btn"
+                id="reset-axes"
+                aria-label="Reset all axes to their default values"
+              >
+                <svg
+                  aria-hidden="true"
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                  <path d="M3 3v5h5" />
+                </svg>
+                Reset
+              </button>
+            </div>
+            <div id="axes-container" class="axes-container" aria-live="polite">
+              <div class="axes-empty" id="axes-empty" hidden>
+                <p>This font has no variable axes.</p>
+                <p class="axes-empty-hint">Try a preset above to explore variable axes.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- CSS Snippet -->
+          <section class="snippet-section" aria-labelledby="snippet-heading">
+            <div class="section-header">
+              <h2 class="section-title" id="snippet-heading">CSS</h2>
+              <button
+                type="button"
+                class="copy-btn"
+                id="copy-btn"
+                aria-label="Copy CSS snippet to clipboard"
+              >
+                <svg
+                  class="icon-copy"
+                  aria-hidden="true"
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                  <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                </svg>
+                <svg
+                  class="icon-check"
+                  aria-hidden="true"
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                <span class="copy-label">Copy</span>
+              </button>
+            </div>
+            <pre
+              class="snippet-block"
+              aria-label="Generated CSS snippet"
+            ><code id="snippet-code"></code></pre>
+          </section>
+        </aside>
+      </div>
+    </main>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
