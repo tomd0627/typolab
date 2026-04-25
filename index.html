@@ -18,7 +18,7 @@
     />
     <link rel="stylesheet" href="css/style.css" />
     <script>
-      (function () {
+      (() => {
         const saved = localStorage.getItem("typolab-theme");
         const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
         if (saved === "dark" || (!saved && prefersDark)) {

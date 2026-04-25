@@ -88,8 +88,8 @@
 
 /* ─── Specimen Loading / Error States ─────────────────────────────────────── */
 
-.specimen-loading,
-.specimen-error {
+.specimen-loading:not([hidden]),
+.specimen-error:not([hidden]) {
   align-items: center;
   color: var(--color-text-2);
   display: flex;
@@ -99,7 +99,7 @@
   padding-inline: var(--space-6);
 }
 
-.specimen-error {
+.specimen-error:not([hidden]) {
   color: var(--color-error);
 }
 
@@ -157,6 +157,7 @@
   border-radius: var(--radius-full);
   cursor: pointer;
   inline-size: 96px;
+  min-inline-size: 48px;
   outline: none;
   position: relative;
 }
