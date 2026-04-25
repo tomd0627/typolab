@@ -2,8 +2,6 @@
 
 An interactive variable font explorer. Load any font from a curated catalog of Google Fonts, manipulate its variable axes in real time, and export production-ready CSS.
 
-**Live demo:** https://typolab.netlify.app _(placeholder — update after deploy)_
-
 ---
 
 ## What it does
@@ -25,13 +23,13 @@ Vanilla HTML, CSS, and JavaScript — no framework, no bundler, no runtime depen
 
 That was a deliberate choice. The project is a typography tool; the CSS is the product. A build step and component abstraction would add noise without value. ES modules handle the only real modularity concern (separating font loading, axis rendering, snippet generation, etc.). The result is a file you can open directly in a browser or deploy by dropping a folder on a CDN.
 
-| Concern | Approach |
-|---|---|
-| Styling | Custom properties throughout; `@layer` cascade; logical properties |
+| Concern      | Approach                                                                   |
+| ------------ | -------------------------------------------------------------------------- |
+| Styling      | Custom properties throughout; `@layer` cascade; logical properties         |
 | Font loading | Google Fonts `<link>` injection + `document.fonts.load()` with 6 s timeout |
-| State | Module-level variables; no store |
-| Theme | `data-theme` attribute on `<html>`; inline script prevents flash |
-| Deployment | Netlify static; `_redirects` + `netlify.toml` for headers |
+| State        | Module-level variables; no store                                           |
+| Theme        | `data-theme` attribute on `<html>`; inline script prevents flash           |
+| Deployment   | Netlify static; `_redirects` + `netlify.toml` for headers                  |
 
 ---
 
@@ -59,11 +57,11 @@ That's it — `npm install` triggers the `prepare` script which initialises Husk
 
 What runs on commit:
 
-| File type | Pipeline |
-|---|---|
-| `*.js` | Prettier → ESLint --fix |
-| `*.css` | Prettier → Stylelint --fix |
-| `*.html` | Prettier |
+| File type | Pipeline                   |
+| --------- | -------------------------- |
+| `*.js`    | Prettier → ESLint --fix    |
+| `*.css`   | Prettier → Stylelint --fix |
+| `*.html`  | Prettier                   |
 
 ESLint is configured with flat config (`eslint.config.js`): no unused variables, no `console.log`, strict equality enforced.
 
